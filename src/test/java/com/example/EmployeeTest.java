@@ -46,6 +46,13 @@ class EmployeeTest {
         assertThat(employee.isPaid()).isTrue();
     }
 
+    @Test
+    @DisplayName("toString should return correct format with specific id and salary")
+     void toStringShouldReturnCorrectFormatWithSpecificIdAndSalary(){
+        String expected = "Employee [id=" + "Svante" + ", salary=" + 50000.0 + "]";
+        assertThat(employee.toString()).isEqualTo(expected);
+
+    }
 
 
 

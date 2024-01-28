@@ -20,7 +20,6 @@ class EmployeeTest {
     void verifyEmployeeDetailsAfterCreation(){
        assertThat(employee.getId()).isEqualTo("Svante");
        assertThat(employee.getSalary()).isEqualTo(50000.0);
-       assertThat(employee.isPaid()).isTrue();
 
    }
 

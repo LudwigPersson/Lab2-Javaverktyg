@@ -22,7 +22,6 @@ class EmployeeTest {
        assertThat(employee.getSalary()).isEqualTo(50000.0);
        assertThat(employee.isPaid()).isTrue();
 
-
    }
 
    @Test
@@ -33,6 +32,12 @@ class EmployeeTest {
 
    }
 
+   @Test
+   @DisplayName("setSalary updates employee salary")
+    void setSalaryUpdatesEmployeeSalary(){
+       employee.setSalary(75000);
+       assertThat(employee.getSalary()).isEqualTo(75000);
+   }
 
 
 

@@ -21,10 +21,17 @@ class EmployeeTest {
        assertThat(employee.getId()).isEqualTo("Svante");
        assertThat(employee.getSalary()).isEqualTo(50000.0);
        assertThat(employee.isPaid()).isTrue();
+
+
    }
 
+   @Test
+   @DisplayName("setId updates employee id")
+    void setIdUpdatesEmployeeId(){
+       employee.setId("Ludwig");
+       assertThat(employee.getId()).isEqualTo("Ludwig");
 
-
+   }
 
 
 

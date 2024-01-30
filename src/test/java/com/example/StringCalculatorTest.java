@@ -53,4 +53,13 @@ class StringCalculatorTest {
 
     }
 
+    @Test
+    @DisplayName("Add method should throw exception for negative numbers")
+    void addMethodShouldThrowExceptionForNegativeNumbers() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> StringCalculator.add("1,-2,3,-4"));
+
+        assertEquals("Negatives not allowed: [-2, -4]", exception.getMessage());
+    }
+
+
 }

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 class EmployeesTest {
@@ -47,5 +48,41 @@ class EmployeesTest {
         }
     }
 
+    @Test
+    @DisplayName("Employees handle payments with different employees and amounts")
+    void employeesHandlePaymentsWithDifferentEmployeesAndAmounts() {
+        List<Employee> employeesList = Arrays.asList(
+                new Employee("1", 50000.0),
+                new Employee("2", 60000.0),
+                new Employee("3", 75000.0)
+        );
+
+        EmployeeRepositorySpy employeeRepositorySpy = new EmployeeRepositorySpy(employeesList);
+        BankService bankServiceStub = new BankServiceStub(true);
+        Employees employees = new Employees(employeeRepositorySpy, bankServiceStub);
+
+        int payments = employees.payEmployees();
+
+        assertEquals(3, payments);
+
+        for (Employee employee : employeeRepositorySpy.findAll()) {
+            assertTrue(employee.isPaid());
+        }
+    }
+
+    @Test
+    @DisplayName("Employees handle payments when no employees exist")
+    void employeesHandlePaymentsWhenNoEmployeesExist() {
+        EmployeeRepositorySpy employeeRepositorySpy = new EmployeeRepositorySpy(Collections.emptyList());
+        BankService bankServiceStub = new BankServiceStub(true);
+        Employees employees = new Employees(employeeRepositorySpy, bankServiceStub);
+
+        int payments = employees.payEmployees();
+
+        assertEquals(0, payments);
+
+        List<Employee> foundEmployees = employeeRepositorySpy.findAll();
+        assertTrue(foundEmployees.isEmpty());
+    }
 
 }

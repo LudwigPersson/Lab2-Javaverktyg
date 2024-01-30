@@ -17,4 +17,13 @@ class StringCalculatorTest {
 
     }
 
+    @Test
+    @DisplayName("Add method should return number for single number")
+    void addMethodShouldReturnNumberForSingleNumber(){
+        int result = StringCalculator.add("1");
+        assertEquals(1,result);
+
+    }
+
+
 }

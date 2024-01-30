@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
- import static org.assertj.core.api.Assertions.*;
 
 class StringCalculatorTest {
 
@@ -32,6 +31,11 @@ class StringCalculatorTest {
         assertEquals(3, result);
     }
 
-
+    @Test
+    @DisplayName("Add method should return sum for unknown amount of numbers")
+    void addMethodShouldReturnSumForUnknownAmountOfNumbers(){
+        int result = StringCalculator.add("1,2,3,4,5");
+        assertEquals(15,result);
+    }
 
 }

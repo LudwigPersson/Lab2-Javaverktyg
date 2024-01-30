@@ -25,5 +25,13 @@ class StringCalculatorTest {
 
     }
 
+    @Test
+    @DisplayName("Add method should return the sum for two numbers separated by a comma")
+    void addMethodShouldReturnSumForTwoNumbersSeparatedByComma() {
+        int result = StringCalculator.add("1,2");
+        assertEquals(3, result);
+    }
+
+
 
 }

@@ -38,4 +38,10 @@ class StringCalculatorTest {
         assertEquals(15,result);
     }
 
+    @Test
+    @DisplayName("Add method should handle new lines between numbers")
+    void addMethodShouldHandleNewLinesBetweenNumbers(){
+        int result = StringCalculator.add("1\n2,3");
+        assertEquals(6, result);
+    }
 }

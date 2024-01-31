@@ -25,7 +25,9 @@ public class StringCalculator {
                 if (n < 0) {
                     negativeNumbers.add(n);
                 }
-                sum += n;
+                if (n <= 1000) {
+                    sum += n;
+                }
             }
 
             if (!negativeNumbers.isEmpty()) {
@@ -35,6 +37,7 @@ public class StringCalculator {
             return sum;
         }
     }
+
 }
 
 

@@ -61,5 +61,11 @@ class StringCalculatorTest {
         assertEquals("Negatives not allowed: [-2, -4]", exception.getMessage());
     }
 
+    @Test
+    @DisplayName("Add method should ignore numbers greater than 1000")
+    void addMethodShouldIgnoreNumbersGreaterThan1000(){
+        int result = StringCalculator.add("2,1001");
+        assertEquals(2,result);
 
+    }
 }

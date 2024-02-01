@@ -68,4 +68,11 @@ class StringCalculatorTest {
         assertEquals(2,result);
 
     }
+
+    @Test
+    @DisplayName("Add method should handle custom delimiter of any length")
+    void addMethodShouldHandleCustomDelimiterOfAnyLength() {
+        int result = StringCalculator.add("//[***]\n1***2***3");
+        assertEquals(6, result);
+    }
 }

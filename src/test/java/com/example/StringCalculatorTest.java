@@ -82,4 +82,11 @@ class StringCalculatorTest {
         int result = StringCalculator.add("//[*][%]\n1*2%3");
         assertEquals(6, result);
     }
+
+    @Test
+    @DisplayName("Add method should handle multiple delimiters with length longer than one char")
+    void addMethodShouldHandleMultipleDelimitersWithLengthLongerThanOneChar() {
+        int result = StringCalculator.add("//[***][%%%]\n1***2%%%3");
+        assertEquals(6, result);
+    }
 }

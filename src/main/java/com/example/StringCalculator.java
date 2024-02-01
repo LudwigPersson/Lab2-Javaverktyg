@@ -1,46 +1,60 @@
 package com.example;
 
+import java.util.regex.Pattern;
+
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
 
 public class StringCalculator {
 
     public static int add(String numbers) {
         if (numbers.isEmpty()) {
             return 0;
-        } else {
-            String delimiter = ",";
-            if (numbers.startsWith("//")) {
-                int delimiterEnd = numbers.indexOf('\n');
-                delimiter = numbers.substring(3, delimiterEnd);
-                numbers = numbers.substring(delimiterEnd + 1);
+        }
+
+        String delimiter = ",";
+        String[] numArray;
+
+        if (numbers.startsWith("//")) {
+            Matcher matcher = Pattern.compile("//\\[?(.*?)?\n").matcher(numbers);
+            if (matcher.find()) {
+                delimiter = Pattern.quote(matcher.group(1));
+                numbers = numbers.substring(matcher.end());
             }
+        }
 
-            String[] numArray = numbers.split("[,\n" + Pattern.quote(delimiter) + "]");
-            List<Integer> negativeNumbers = new ArrayList<>();
-            int sum = 0;
+        numArray = numbers.split("[,\n" + delimiter + "]");
 
-            for (String num : numArray) {
-                if (!num.isEmpty()) {
-                    int n = Integer.parseInt(num);
-                    if (n < 0) {
-                        negativeNumbers.add(n);
-                    }
-                    if (n <= 1000) {
-                        sum += n;
-                    }
+        List<Integer> negativeNumbers = new ArrayList<>();
+
+        int sum = 0;
+        for (String num : numArray) {
+            if (!num.isEmpty()) {
+                int n = Integer.parseInt(num);
+                if (n < 0) {
+                    negativeNumbers.add(n);
+                } else if (n <= 1000) {
+                    sum += n;
                 }
             }
-
-            if (!negativeNumbers.isEmpty()) {
-                throw new IllegalArgumentException("Negatives not allowed: " + negativeNumbers);
-            }
-
-            return sum;
         }
+
+        if (!negativeNumbers.isEmpty()) {
+            throw new IllegalArgumentException("Negatives not allowed: " + negativeNumbers);
+        }
+
+        return sum;
     }
 }
+
+
+
+
+
+
 
 
 

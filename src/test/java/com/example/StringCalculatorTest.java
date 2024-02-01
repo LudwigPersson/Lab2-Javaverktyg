@@ -75,4 +75,11 @@ class StringCalculatorTest {
         int result = StringCalculator.add("//[***]\n1***2***3");
         assertEquals(6, result);
     }
+
+    @Test
+    @DisplayName("Add method should handle multiple delimiters")
+    void addMethodShouldHandleMultipleDelimiters() {
+        int result = StringCalculator.add("//[*][%]\n1*2%3");
+        assertEquals(6, result);
+    }
 }
